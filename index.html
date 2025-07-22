@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализатор видеофайлов - MediaInfo</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="https://unpkg.com/mediainfo.js"></script>
+    <script type="text/javascript" src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 Анализатор видеофайлов</h1>
+            <p>Загрузите видеофайл для анализа его метаданных и аудиодорожки</p>
+        </header>
+
+        <main>
+            <div class="upload-section" id="uploadSection">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <div class="upload-icon">📁</div>
+                        <h3>Перетащите видеофайл сюда</h3>
+                        <p>или</p>
+                        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                            Выберите файл
+                        </button>
+                        <input type="file" id="fileInput" accept="video/*,audio/*" style="display: none;">
+                        <div class="file-types">
+                            <small>Поддерживаются: MP4, AVI, MKV, MOV, WMV, FLV, WebM, MP3, WAV, FLAC и другие</small>
+                            <br>
+                            <small><strong>Максимальный размер:</strong> 24GB | <strong>Большие файлы:</strong> обрабатываются по частям</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="loading-section" id="loadingSection" style="display: none;">
+                <div class="loading-spinner"></div>
+                <p>Анализируем файл...</p>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="file-info">
+                    <h2>📄 Информация о файле</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="label">Имя файла:</span>
+                            <span class="value" id="fileName"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Размер:</span>
+                            <span class="value" id="fileSize"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Тип:</span>
+                            <span class="value" id="fileType"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="showTab('general')">Общая информация</button>
+                    <button class="tab-btn" onclick="showTab('summary')">Краткая информация</button>
+                    <button class="tab-btn" onclick="showTab('video')">Видео</button>
+                    <button class="tab-btn" onclick="showTab('audio')">Аудио</button>
+                    <button class="tab-btn" onclick="showTab('raw')">Сырые данные</button>
+                </div>
+
+                <div class="tab-content">
+                    <div id="general-tab" class="tab-pane active">
+                        <h3>📊 Общая информация</h3>
+                        <div id="generalInfo" class="info-content"></div>
+                    </div>
+
+                    <div id="summary-tab" class="tab-pane">
+                        <h3>📋 Краткая информация</h3>
+                        <div id="summaryInfo" class="summary-content"></div>
+                    </div>
+
+                    <div id="video-tab" class="tab-pane">
+                        <h3>🎥 Видеодорожка</h3>
+                        <div id="videoInfo" class="info-content"></div>
+                    </div>
+
+                    <div id="audio-tab" class="tab-pane">
+                        <h3>🔊 Аудиодорожка</h3>
+                        <div id="audioInfo" class="info-content"></div>
+                    </div>
+
+                    <div id="raw-tab" class="tab-pane">
+                        <h3>🔍 Сырые данные MediaInfo</h3>
+                        <pre id="rawInfo" class="raw-data"></pre>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="btn-secondary" onclick="resetAnalyzer()">Анализировать другой файл</button>
+                    <button class="btn-primary" onclick="exportResults()">Экспортировать результаты</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by <a href="https://mediaarea.net/MediaInfo" target="_blank">MediaInfo.js</a></p>
+        </footer>
+    </div>
+</body>
+</html>
