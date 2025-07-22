@@ -156,7 +156,6 @@ if (file.size > 1024 * 1024 * 1024) { // >1GB
 
 Если у вас есть вопросы или предложения, не стесняйтесь обращаться:
 
-- 📧 Email: your.email@example.com
 - 🐛 Issues: [GitHub Issues](https://github.com/yourusername/Video-analyzer/issues)
 
 ---
